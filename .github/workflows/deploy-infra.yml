@@ -25,18 +25,14 @@ jobs:
         cd infrastructure
         terraform plan -no-color -input=false
       continue-on-error: true
-    # - name: Terraform Plan Status
-    #   if: steps.plan.outcome == 'failure'
-    #   run: exit 1
-    # - name: Terraform Apply
-    #   run: |
-    #     cd infrastructure
-    #     terraform apply --auto-approve -input=false
+    - name: Terraform Plan Status
+      if: steps.plan.outcome == 'failure'
+      run: exit 1
     - name: Terraform Destroy
       run: |
         cd infrastructure
         terraform destroy --auto-approve 
-  build_push_airflow:
+  # build_push_airflow:
   #   uses: ./.github/workflows/build-push-airflow.yml
   #   secrets: inherit
   #   needs: run_terraform_plan_apply
