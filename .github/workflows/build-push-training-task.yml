@@ -27,6 +27,6 @@ jobs:
         REPOSITORY: ml-training-1
         IMAGE_TAG: latest
       run: |
-        cd model_training
+        cd training_task
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
