@@ -28,15 +28,15 @@ jobs:
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1
-    - name: Terraform destroy
+    - name: Terraform apply
       run: |
         cd infrastructure
-        terraform destroy --auto-approve -input=false
-  # build_push_airflow:
-  #   uses: ./.github/workflows/build-push-airflow.yml
-  #   secrets: inherit
-  #   needs: run_terraform_plan_apply
-  # build_push_task_1_image:
-  #   uses: ./.github/workflows/build-push-training-task.yml
-  #   secrets: inherit
-  #   needs: build_push_airflow
+        terraform apply --auto-approve -input=false
+  build_push_airflow:
+    uses: ./.github/workflows/build-push-airflow.yml
+    secrets: inherit
+    needs: run_terraform_plan_apply
+  build_push_task_1_image:
+    uses: ./.github/workflows/build-push-training-task.yml
+    secrets: inherit
+    needs: build_push_airflow
