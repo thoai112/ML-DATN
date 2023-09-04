@@ -31,7 +31,7 @@ jobs:
     - name: Terraform apply
       run: |
         cd infrastructure
-        terraform destroy --auto-approve -input=false
+        terraform apply --auto-approve -input=false
   build_push_airflow:
     uses: ./.github/workflows/build-push-airflow.yml
     secrets: inherit
