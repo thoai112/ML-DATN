@@ -1,7 +1,4 @@
 
-# DAG to run the training ECS task using ECSOperator
-
-
 from http import client
 from airflow import DAG
 from airflow.contrib.operators.ecs_operator import ECSOperator
@@ -9,10 +6,10 @@ from airflow.utils.dates import days_ago
 import boto3
 import datetime as dt
 
-CLUSTER_NAME="ml-cluster" 
-CONTAINER_NAME="ecs-op-task-1" 
-LAUNCH_TYPE="FARGATE"
-SERVICE_NAME="ecs-ttst-service-1" 
+CLUSTER_NAME = "my-ecs-cluster"  # Replace value for CLUSTER_NAME
+CONTAINER_NAME = "my-container"  # Replace value for CONTAINER_NAME
+LAUNCH_TYPE = "FARGATE"
+SERVICE_NAME = "my-service"  # Replace value for SERVICE_NAME
 
 with DAG(
     dag_id = "ecs_fargate_dag_1",
