@@ -16,7 +16,7 @@ terraform {
     organization = "kuratajr"
 
     workspaces {
-      name = "AI"
+      name = "ML"
     }
   }
 
