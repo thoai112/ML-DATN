@@ -24,9 +24,9 @@ variable "task_assume_role_arn" {
 }
 
 variable "model_bucket" {
-  default = "modelbucketnew1"
+  default = "modelbucket1"
 }
 
 variable "dataset_bucket" {
-  default = "datasetbucketnew1"
+  default = "datasetbucket1"
 }
