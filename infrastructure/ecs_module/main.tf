@@ -66,7 +66,7 @@ resource "aws_ecs_task_definition" "airflow_task_def" {
   container_definitions = <<DEFINITION
 [
   {
-    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.ap-southeast-1.amazonaws.com/ml-model-deploy-repo:latest",
+    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-model-deploy-repo:latest",
     "cpu": 2048,
     "memory": 4096,
     "name": "airflow-task",
@@ -81,7 +81,7 @@ resource "aws_ecs_task_definition" "airflow_task_def" {
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/airflow-logs",
-        "awslogs-region": "ap-southeast-1",
+        "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "ecs"
       }
     }
@@ -101,7 +101,7 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
   container_definitions = <<DEFINITION
 [
   {
-    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.ap-southeast-1.amazonaws.com/ml-training-1:latest",
+    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-training-1:latest",
     "cpu": 2048,
     "memory": 4096,
     "name": "ecs-ttst-container-1",
@@ -116,7 +116,7 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/train-task-container-logs",
-        "awslogs-region": "ap-southeast-1",
+        "awslogs-region": "us-east-1",
         "awslogs-stream-prefix": "ecs"
       }
     }

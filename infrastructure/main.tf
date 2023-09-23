@@ -11,20 +11,19 @@ terraform {
       version = "3.4.0"
     }
   }
-
+ 
   cloud {
-    organization = "kuratajr"
+    organization = "KURATAJRX"
 
     workspaces {
-      name = "ML"
+      name = "ml"
     }
   }
 
-  
 }
 
 provider "aws" {
-  region = "ap-southeast-1"
+  region = "us-east-1"
 }
 
 
