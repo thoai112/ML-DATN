@@ -11,7 +11,7 @@ terraform {
       version = "3.4.0"
     }
   }
- 
+
   cloud {
     organization = "KURATAJRX"
 
