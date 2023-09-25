@@ -27,6 +27,7 @@ with DAG(
             taskdef=v['taskDefinition']
             netconfig=v['networkConfiguration']
             break
+
     ecs_operator_task = ECSOperator(
         task_id = "ecs_operator_task",
         dag=dag,
