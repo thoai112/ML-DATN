@@ -1,4 +1,4 @@
-FROM python:3.9.17-slim
+FROM python:3.7-slim-buster
 
 ENV APP_DIR /ml-pipeline
 
