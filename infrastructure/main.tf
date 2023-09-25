@@ -16,7 +16,7 @@ terraform {
     organization = "KURATAJRX"
 
     workspaces {
-      name = "ml"
+      name = "infra-airflow"
     }
   }
 

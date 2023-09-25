@@ -24,9 +24,9 @@ variable "task_assume_role_arn" {
 }
 
 variable "model_bucket" {
-  default = "modelbucketx1"
+  default = "modelbucketx2"
 }
 
 variable "dataset_bucket" {
-  default = "datasetbucketx1"
+  default = "datasetbucketx2"
 }
