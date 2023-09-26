@@ -1,7 +1,7 @@
 
 from http import client
 from airflow import DAG
-from airflow.contrib.operators.ecs_operator import ECSOperator
+from airflow.providers.amazon.aws.operators.ecs import ECSOperator
 from airflow.utils.dates import days_ago
 import boto3
 import datetime as dt
@@ -38,7 +38,7 @@ with DAG(
             "containerOverrides":[
                 {
                     "name":CONTAINER_NAME,
-                    'memoryReservation': 500
+                    'memoryReservation': 4096
                 },
             ],
         },
