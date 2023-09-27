@@ -11,10 +11,6 @@ resource "aws_ecr_repository" "ml_training_task_repo" {
   name = "ml-training-1"
 }
 
-resource "aws_ecr_repository" "ml_hello_task_repo" {
-  name = "ml-hello-1"
-}
-
 resource "aws_cloudwatch_log_group" "airflow-logs" {
   name = "/airflow-logs"  
 
@@ -33,11 +29,6 @@ resource "aws_cloudwatch_log_group" "train-task-container-logs" {
   retention_in_days = 30  
 }
 
-resource "aws_cloudwatch_log_group" "train-task-hello-logs" {
-  name = "/train-task-hello-logs"  
-
-  retention_in_days = 30  
-}
 
 resource "aws_ecs_cluster" "ml_cluster" {
   name = "ml-cluster"
@@ -135,41 +126,6 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
 DEFINITION
 }
 
-resource "aws_ecs_task_definition" "ecs_operatore_task_2" {
-  family                   = "ecs-op-task-2"
-  network_mode             = "awsvpc"
-  execution_role_arn       = var.task_role_arn
-  task_role_arn = var.task_assume_role_arn
-  requires_compatibilities = ["FARGATE"]
-  cpu                      = 2048
-  memory                   = 4096
-  container_definitions = <<DEFINITION
-[
-  {
-    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-hello-1:latest",
-    "cpu": 2048,
-    "memory": 4096,
-    "name": "ecs-ttst-container-2",
-    "networkMode": "awsvpc",
-    "portMappings": [
-      {
-        "containerPort": 8080,
-        "hostPort": 8080
-      }
-    ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group": "/train-task-hello-logs",
-        "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "ecs"
-      }
-    }
-  }
-]
-DEFINITION
-}
-
 
 resource "aws_ecs_service" "airflow_service" {
   name            = "airflow-service"
@@ -203,18 +159,6 @@ resource "aws_ecs_service" "ecs_service_1" {
   }
 }
 
-resource "aws_ecs_service" "ecs_service_2" {
-  name            = "ecs-ttst-service-2"
-  cluster         = aws_ecs_cluster.ml_cluster.id
-  task_definition = aws_ecs_task_definition.ecs_operatore_task_2.arn
-  desired_count   = 0
-  launch_type     = "FARGATE"
-
-  network_configuration {
-    security_groups = [var.task_sg_id]
-    subnets         = var.subnet_ids
-  }
-}
 
 
 
