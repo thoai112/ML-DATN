@@ -6,9 +6,9 @@ import boto3
 import datetime as dt
 
 CLUSTER_NAME = "ml-cluster"  
-CONTAINER_NAME = "ecs-ttst-container-1"  
+CONTAINER_NAME = "ecs-ttst-container-2"  
 LAUNCH_TYPE = "FARGATE"
-SERVICE_NAME = "ecs-ttst-service-1"  
+SERVICE_NAME = "ecs-ttst-service-2"  
 
 with DAG(
     dag_id = "ecs_fargate_dag_1",
