@@ -146,7 +146,7 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_2" {
   container_definitions = <<DEFINITION
 [
   {
-    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-deploy-1:latest",
+    "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-hello-1:latest",
     "cpu": 2048,
     "memory": 4096,
     "name": "ecs-ttst-container-2",
