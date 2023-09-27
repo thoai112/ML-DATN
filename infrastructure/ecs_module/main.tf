@@ -94,8 +94,8 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
   execution_role_arn       = var.task_role_arn
   task_role_arn = var.task_assume_role_arn
   requires_compatibilities = ["FARGATE"]
-  cpu                      = 2048
-  memory                   = 4096
+  cpu                      = 4096
+  memory                   = 8192
   container_definitions = <<DEFINITION
 [
   {
