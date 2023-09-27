@@ -8,4 +8,5 @@ WORKDIR ${APP_DIR}
 
 COPY . .
 RUN apt-get update
+RUN apt-get install libgomp1
 CMD ["python", "main.py"]
