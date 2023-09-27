@@ -59,14 +59,14 @@ resource "aws_ecs_task_definition" "airflow_task_def" {
   task_role_arn = var.task_assume_role_arn
   requires_compatibilities = ["FARGATE"]
   cpu                      = 2048
-  memory                   = 8192
+  memory                   = 4096
 
   container_definitions = <<DEFINITION
 [
   {
     "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-model-deploy-repo:latest",
     "cpu": 2048,
-    "memory": 8192,
+    "memory": 4096,
     "name": "airflow-task",
     "networkMode": "awsvpc",
     "portMappings": [
@@ -95,13 +95,13 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
   task_role_arn = var.task_assume_role_arn
   requires_compatibilities = ["FARGATE"]
   cpu                      = 2048
-  memory                   = 8192
+  memory                   = 4096
   container_definitions = <<DEFINITION
 [
   {
     "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-training-1:latest",
     "cpu": 2048,
-    "memory": 8192,
+    "memory": 4096,
     "name": "ecs-ttst-container-1",
     "networkMode": "awsvpc",
     "portMappings": [
