@@ -1,6 +1,10 @@
+
+# DAG to run the training ECS task using ECSOperator
+
+
 from http import client
 from airflow import DAG
-from airflow.providers.amazon.aws.operators.ecs import ECSOperator
+from airflow.contrib.operators.ecs_operator import ECSOperator
 from airflow.utils.dates import days_ago
 import boto3
 import datetime as dt
@@ -26,7 +30,6 @@ with DAG(
             taskdef=v['taskDefinition']
             netconfig=v['networkConfiguration']
             break
-
     ecs_operator_task = ECSOperator(
         task_id = "ecs_operator_task",
         dag=dag,

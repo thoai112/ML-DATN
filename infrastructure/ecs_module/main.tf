@@ -1,5 +1,3 @@
-
-
 resource "aws_ecr_repository" "ml_model_deploy" {
   name = "ml-model-deploy-repo"
 }
@@ -28,7 +26,6 @@ resource "aws_cloudwatch_log_group" "train-task-container-logs" {
 
   retention_in_days = 30  
 }
-
 
 resource "aws_ecs_cluster" "ml_cluster" {
   name = "ml-cluster"
@@ -61,15 +58,15 @@ resource "aws_ecs_task_definition" "airflow_task_def" {
   execution_role_arn       = var.task_role_arn
   task_role_arn = var.task_assume_role_arn
   requires_compatibilities = ["FARGATE"]
-  cpu                      = 2048
-  memory                   = 4096
+  cpu                      = 4096
+  memory                   = 8192
 
   container_definitions = <<DEFINITION
 [
   {
     "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-model-deploy-repo:latest",
-    "cpu": 2048,
-    "memory": 4096,
+    "cpu": 4096,
+    "memory": 8192,
     "name": "airflow-task",
     "networkMode": "awsvpc",
     "portMappings": [
@@ -103,8 +100,8 @@ resource "aws_ecs_task_definition" "ecs_operatore_task_1" {
 [
   {
     "image": "${data.aws_caller_identity.current.account_id}.dkr.ecr.us-east-1.amazonaws.com/ml-training-1:latest",
-    "cpu": 2048,
-    "memory": 4096,
+    "cpu": 4096,
+    "memory": 8192,
     "name": "ecs-ttst-container-1",
     "networkMode": "awsvpc",
     "portMappings": [
@@ -158,8 +155,3 @@ resource "aws_ecs_service" "ecs_service_1" {
     subnets         = var.subnet_ids
   }
 }
-
-
-
-
-
