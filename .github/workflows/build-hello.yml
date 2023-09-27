@@ -24,7 +24,7 @@ jobs:
     - name: Build, tag, and push docker image to Amazon ECR
       env:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        REPOSITORY: ml-deploy-1
+        REPOSITORY: ml-hello-1
         IMAGE_TAG: latest
       run: |
         cd hello_task
